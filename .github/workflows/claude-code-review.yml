@@ -40,6 +40,10 @@ jobs:
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review --comment ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
           claude_args: '--allowedTools "mcp__github_inline_comment__create_inline_comment"'
+          # Surfaces the reviewer's reasoning in the job log. Without it the SDK
+          # output is hidden, so a review that finds nothing is indistinguishable
+          # from one that could not read the diff. Note this log is public.
+          show_full_output: true
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
 
