@@ -11,7 +11,9 @@ import swooshUrl from '@/assets/figma/trial-swoosh.svg'
  */
 export function TrialCard({ daysLeft }: { daysLeft: number }) {
   return (
-    <div className="relative h-16 overflow-hidden rounded-tile bg-accent-amber-soft px-2 pt-1.5">
+    <div // 8px, tighter than the 12px used by the task tiles and Replies panel.
+      className="relative h-16 overflow-hidden rounded-lg bg-accent-amber-soft px-2 pt-1.5"
+    >
       <img
         src={swooshUrl}
         alt=""

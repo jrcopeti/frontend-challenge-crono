@@ -1,0 +1,44 @@
+import { ChevronRight } from 'lucide-react'
+
+import MailIcon from '@/assets/figma/replies-mail.svg?react'
+import { Card, CardTitle } from '@/components/ui/Card'
+import { AvatarStack } from '@/components/ui/Avatar'
+
+export type Replier = { name: string; src: string }
+
+/**
+ * Reply count with the accounts that replied. The teal panel is 80px tall with
+ * a 48px icon chip, measured from the export.
+ */
+export function RepliesCard({
+  count,
+  repliers,
+}: {
+  count: number
+  repliers: Replier[]
+}) {
+  return (
+    <Card className="flex h-full flex-col p-4">
+      <div className="flex items-center justify-between">
+        <CardTitle>Replies</CardTitle>
+        <a
+          href="#inbox"
+          className="inline-flex items-center gap-1 text-body leading-[18px] font-medium text-brand-strong"
+        >
+          Open inbox
+          <ChevronRight size={16} strokeWidth={2} aria-hidden />
+        </a>
+      </div>
+
+      <div className="mt-1.5 flex h-20 items-center rounded-tile bg-brand-soft pr-6 pl-4">
+        <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-chip">
+          <MailIcon aria-hidden className="size-6 text-brand-strong" />
+        </span>
+        <span className="ml-[18px] text-stat font-semibold text-ink-soft">
+          {count}
+        </span>
+        <AvatarStack people={repliers} size={32} className="ml-auto" />
+      </div>
+    </Card>
+  )
+}
