@@ -64,8 +64,7 @@ conflicts with another goal. All are deliberate.
 | The right rail's top card sits 5px lower than the main column's                   | Aligned to the same top                                                   |
 | KPI bars contradict their own numbers ("Companies engaged 0/500" drawn ~52% full) | Bars derive from `value / max`, so two of six differ from the export      |
 | Amber badges use white text (~1.9:1, below WCAG AA)                               | Kept, because fidelity is the brief; sampled from the export, not assumed |
-| The design's nav icons are not from an identifiable icon set                      | Closest Lucide equivalents, chosen by matching the enlarged export        |
-| Two sidebar graphics not yet exported (footer avatar, trial-card swoosh)          | Omitted rather than invented; tracked in `src/assets/figma/README.md`     |
+| Only the two generic disclosure chevrons are not design exports                   | Lucide, since every distinctive glyph was exported from Figma             |
 
 ## Design source
 

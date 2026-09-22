@@ -1,19 +1,19 @@
-import {
-  ChartColumn,
-  ChartNoAxesCombined,
-  Database,
-  FilePlus2,
-  ListChecks,
-  Mailbox,
-  PanelsTopLeft,
-  Search,
-  Table2,
-  type LucideIcon,
-} from 'lucide-react'
+import type { FunctionComponent, SVGProps } from 'react'
+
+import AnalyticsIcon from '@/assets/figma/nav-analytics.svg?react'
+import DashboardIcon from '@/assets/figma/nav-dashboard.svg?react'
+import DealsIcon from '@/assets/figma/nav-deals.svg?react'
+import FindNewIcon from '@/assets/figma/nav-find-new.svg?react'
+import InboxIcon from '@/assets/figma/nav-inbox.svg?react'
+import SequencesIcon from '@/assets/figma/nav-sequences.svg?react'
+import TasksIcon from '@/assets/figma/nav-tasks.svg?react'
+import TemplatesIcon from '@/assets/figma/nav-templates.svg?react'
+
+export type NavIcon = FunctionComponent<SVGProps<SVGSVGElement>>
 
 export type NavEntry = {
   label: string
-  icon: LucideIcon
+  icon: NavIcon
   /** Amber count pill, as on Inbox. */
   badge?: number
   /** Renders a disclosure chevron, as on Analytics. */
@@ -21,22 +21,21 @@ export type NavEntry = {
 }
 
 /**
- * The design's nav glyphs are not from a published icon set we could identify,
- * so these are the closest Lucide equivalents — substituting was agreed with
- * the designer rather than assumed. Each was picked by enlarging the export and
- * matching the actual shape: Inbox is a flagged mailbox rather than a tray, and
- * Deals is a stack of discs rather than sheets.
+ * Icons are the designer's own exports, inlined by vite-plugin-svgr so they can
+ * take `currentColor` — the artwork ships with the inactive grey baked in, and
+ * the active row needs the same shapes in brand teal.
  *
- * Recorded in the README's "Known deviations".
+ * Dashboard and Lists deliberately share one glyph: the export uses the same
+ * panel mark for both and distinguishes them only by colour.
  */
 export const NAV_ENTRIES: NavEntry[] = [
-  { label: 'Dashboard', icon: PanelsTopLeft },
-  { label: 'Find New', icon: Search },
-  { label: 'Lists', icon: Table2 },
-  { label: 'Templates', icon: FilePlus2 },
-  { label: 'Sequences', icon: ChartNoAxesCombined },
-  { label: 'Tasks', icon: ListChecks },
-  { label: 'Inbox', icon: Mailbox, badge: 24 },
-  { label: 'Deals', icon: Database },
-  { label: 'Analytics', icon: ChartColumn, expandable: true },
+  { label: 'Dashboard', icon: DashboardIcon },
+  { label: 'Find New', icon: FindNewIcon },
+  { label: 'Lists', icon: DashboardIcon },
+  { label: 'Templates', icon: TemplatesIcon },
+  { label: 'Sequences', icon: SequencesIcon },
+  { label: 'Tasks', icon: TasksIcon },
+  { label: 'Inbox', icon: InboxIcon, badge: 24 },
+  { label: 'Deals', icon: DealsIcon },
+  { label: 'Analytics', icon: AnalyticsIcon, expandable: true },
 ]

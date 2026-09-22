@@ -39,7 +39,7 @@ export function NavItem({
         />
       )}
 
-      <Icon size={20} strokeWidth={1.75} className="shrink-0" />
+      <Icon aria-hidden className="size-5 shrink-0" />
 
       {!collapsed && (
         <>
