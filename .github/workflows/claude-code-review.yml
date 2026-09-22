@@ -39,7 +39,10 @@ jobs:
           plugin_marketplaces: 'https://github.com/anthropics/claude-code.git'
           plugins: 'code-review@claude-code-plugins'
           prompt: '/code-review:code-review --comment ${{ github.repository }}/pull/${{ github.event.pull_request.number }}'
-          claude_args: '--allowedTools "mcp__github_inline_comment__create_inline_comment"'
+          # `Skill` is required: without it the code-review plugin is denied, and
+          # the fallback path spawns background agents the run never waits for,
+          # so the job goes green having produced no review at all.
+          claude_args: '--allowedTools "Skill,mcp__github_inline_comment__create_inline_comment"'
           # Surfaces the reviewer's reasoning in the job log. Without it the SDK
           # output is hidden, so a review that finds nothing is indistinguishable
           # from one that could not read the diff. Note this log is public.
