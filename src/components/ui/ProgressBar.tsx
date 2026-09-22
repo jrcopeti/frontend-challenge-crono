@@ -12,6 +12,9 @@ const TONES: Record<ProgressTone, { fill: string; track: string }> = {
   purple: { fill: 'bg-accent-purple', track: 'bg-accent-purple-soft' },
   amber: { fill: 'bg-accent-amber-bar', track: 'bg-accent-amber-soft' },
   pink: { fill: 'bg-accent-pink', track: 'bg-accent-pink-soft' },
+  // Sampled, not a slip: the Pipeline bar's track really is #e9f8f8
+  // (brand-soft), not accent-green-soft (#e8f5d9) — that lighter green is
+  // the Completed task tile's background.
   green: { fill: 'bg-accent-green', track: 'bg-brand-soft' },
   blue: { fill: 'bg-accent-blue', track: 'bg-accent-blue-soft' },
 }

@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { cn } from '@/lib/cn'
 
 /**
@@ -18,6 +20,7 @@ export function Avatar({
   size?: number
   className?: string
 }) {
+  const [failed, setFailed] = useState(false)
   const initials = name
     .split(' ')
     .slice(0, 2)
@@ -33,8 +36,13 @@ export function Avatar({
       )}
       style={{ width: size, height: size }}
     >
-      {src ? (
-        <img src={src} alt="" className="h-full w-full object-cover" />
+      {src && !failed ? (
+        <img
+          src={src}
+          alt=""
+          className="h-full w-full object-cover"
+          onError={() => setFailed(true)}
+        />
       ) : (
         initials
       )}
