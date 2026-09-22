@@ -1,0 +1,10 @@
+dist
+coverage
+pnpm-lock.yaml
+src/assets/figma
+
+# Vendor-managed by `claude-code-action`'s installer. The action refuses to run
+# when a PR's copy differs from the default branch's by even one byte, so
+# Prettier must not touch these.
+.github/workflows/claude-code-review.yml
+.github/workflows/claude.yml
