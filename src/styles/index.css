@@ -1,0 +1,27 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens.
+ *
+ * Every value here is sampled from design/Dashboard.png rather than guessed —
+ * see CLAUDE.md for the sampling workflow. Components reference these tokens;
+ * no raw hex values in component files.
+ *
+ * PR 2 (`feat/design-system`) replaces the placeholders below with the full
+ * sampled palette, type scale and radii.
+ */
+@theme {
+  --font-sans:
+    'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans;
+  }
+}
