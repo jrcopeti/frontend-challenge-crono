@@ -12,11 +12,18 @@ import { cn } from '@/lib/cn'
 export function Avatar({
   src,
   name,
+  alt = '',
   size = 32,
   className,
 }: {
   src?: string
   name: string
+  /**
+   * Defaults to decorative. In a signal row the person's name sits in the
+   * sentence beside the avatar, so announcing it again is noise — but where
+   * nothing else names them (the Replies stack), pass the name.
+   */
+  alt?: string
   size?: number
   className?: string
 }) {
@@ -39,7 +46,7 @@ export function Avatar({
       {src && !failed ? (
         <img
           src={src}
-          alt=""
+          alt={alt}
           className="h-full w-full object-cover"
           onError={() => setFailed(true)}
         />
@@ -66,6 +73,7 @@ export function AvatarStack({
         <Avatar
           key={person.name}
           {...person}
+          alt={person.name}
           size={size}
           className={cn('ring-2 ring-card', index > 0 && '-ml-2')}
         />

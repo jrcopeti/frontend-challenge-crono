@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { Avatar } from '@/components/ui/Avatar'
+import { Avatar, AvatarStack } from '@/components/ui/Avatar'
 
 describe('Avatar', () => {
   it('shows initials when no image is supplied', () => {
@@ -24,5 +24,21 @@ describe('Avatar', () => {
 
     expect(screen.getByText('RS')).toBeInTheDocument()
     expect(container.querySelector('img')).toBeNull()
+  })
+
+  it('is decorative by default, since a signal row names the person in text', () => {
+    const { container } = render(
+      <Avatar name="Robert Smith" src="/robert.png" />,
+    )
+
+    expect(container.querySelector('img')).toHaveAttribute('alt', '')
+  })
+
+  it('names the person when nothing else does, as in the Replies stack', () => {
+    const { container } = render(
+      <AvatarStack people={[{ name: 'Reddit', src: '/reddit.png' }]} />,
+    )
+
+    expect(container.querySelector('img')).toHaveAttribute('alt', 'Reddit')
   })
 })
