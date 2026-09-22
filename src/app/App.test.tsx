@@ -1,20 +1,39 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import App from '@/app/App'
 
-describe('App', () => {
-  it('renders the design system preview', () => {
+describe('App shell', () => {
+  it('renders the main navigation with Dashboard current', () => {
     render(<App />)
 
-    expect(
-      screen.getByRole('heading', { name: /colour tokens/i }),
-    ).toBeInTheDocument()
+    const nav = screen.getByRole('navigation', { name: 'Main' })
+    expect(nav).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /dashboard/i })).toHaveAttribute(
+      'aria-current',
+      'page',
+    )
   })
 
-  it('labels count badges for assistive tech', () => {
+  it('labels the Inbox count for assistive tech', () => {
     render(<App />)
 
-    expect(screen.getByLabelText('12 unread signals')).toHaveTextContent('12')
+    expect(screen.getByLabelText('24 unread inbox items')).toHaveTextContent(
+      '24',
+    )
+  })
+
+  it('collapses and expands the sidebar', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: 'Collapse sidebar' }))
+
+    // Labels go, the icons stay reachable by their accessible name.
+    expect(screen.queryByText('Templates')).not.toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Expand sidebar' }))
+    expect(screen.getByText('Templates')).toBeInTheDocument()
   })
 })
