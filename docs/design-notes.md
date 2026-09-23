@@ -95,6 +95,15 @@ inside the border.** On a bordered card the two differ by 1px per side, which is
 why the KPI card is `px-[15px]` and the Onboarding card `pl-[15px] pr-[18px]`:
 16 and 19 would leave the grid 2px narrow and shift every tile right.
 
+**The two columns do not start level.** Scanning the border colour down a column
+inside each card puts the main column's first card at y=16 and the rail's at
+y=21. Not a rounding artefact: the same scan puts both columns' second row at
+y=322 and both bottom edges at y=733, and the rail is 5px shorter to match
+(293 + 8 + 412 = 713 against 142 + 8 + 148 + 8 + 412 = 718). The designer is
+squaring two different card stacks against the same bottom edge, so the rail
+column carries `lg:mt-[5px]` — from `lg` only, since stacked it would just be a
+wrong gap.
+
 |                   | Value                                           |
 | ----------------- | ----------------------------------------------- |
 | Sidebar           | 192px (191 + 1px right border)                  |
@@ -103,6 +112,7 @@ why the KPI card is `px-[15px]` and the Onboarding card `pl-[15px] pr-[18px]`:
 | Right rail        | x=1016, width 408                               |
 | Column gap        | 8px                                             |
 | Main card rows    | y=16 h=142 · y=166 h=148 · y=322 h=412          |
+| Rail card rows    | y=21 h=293 · y=322 h=412                        |
 | Nav rows          | 40px tall, 48px pitch, 8px gap                  |
 | KPI card          | 408×293, 2×3 grid, 8px gutters                  |
 | KPI tiles         | 184×71, 8px tile padding, first row at y=49     |
@@ -232,7 +242,6 @@ half strength. Rendering a crisp 1px line at the same position is correct.
 
 | Item                                                                                                                                                                                      | Decision                                                                                                                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The right rail's top card sits 5px lower than the main column's                                                                                                                           | Aligned to the same top                                                                                                                                                                             |
 | Amber badges use white text (~1.9:1, below WCAG AA)                                                                                                                                       | Kept — fidelity is the brief, and the colour was sampled rather than assumed. Flagged here rather than silently "fixed"                                                                             |
 | The design's nav glyphs, the Onboarding icons and the brand avatars                                                                                                                       | All are the designer's own exports. Only the two generic disclosure chevrons come from Lucide                                                                                                       |
 | The gap between a KPI icon and its figure is not consistent in the export — the figure starts +20px into the tile on five rows but +17px on Contacts engaged, whose glyph is 2px narrower | One uniform rule: a 16px icon box and a 4px gap. That matches five rows exactly and leaves Contacts engaged 3px right of the export. Consistency across the grid beats matching a nudge on one tile |

@@ -52,7 +52,7 @@ Each phase is its own PR.
 | 6   | `feat/mock-api`               | Types, seed JSON, fake service, query hooks    |
 | 7   | `feat/signals-list`           | Signals card and rows                          |
 | 8   | `feat/signal-actions`         | Action menu, mutations, unread counter, tests  |
-| 9   | `chore/responsive-polish`     | Breakpoints and accessibility pass             |
+| 9   | `fix/rail-alignment`          | Rail's 5px offset, `vite-env.d.ts`             |
 | 10  | `docs/readme-and-deploy`      | Screenshots, decisions, deployment             |
 
 ## Known deviations
@@ -63,7 +63,6 @@ conflicts with another goal. All are deliberate, and each is explained in
 
 | Item                                                                                | Decision                                                                                                                                               |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| The right rail's top card sits 5px lower than the main column's                     | Aligned to the same top                                                                                                                                |
 | KPI bars contradict their own numbers ("Companies engaged 0/500" is drawn 53% full) | Reproduced as drawn — fidelity is the brief. Five of six are 88px of 166 in the export, carried as data; `aria-valuenow` still reports the true figure |
 | Amber badges use white text (~1.9:1, below WCAG AA)                                 | Kept, because fidelity is the brief; sampled from the export, not assumed                                                                              |
 | Only the two generic disclosure chevrons are not design exports                     | Lucide, since every distinctive glyph was exported from Figma                                                                                          |
