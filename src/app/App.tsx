@@ -6,6 +6,7 @@ import { TodaysTasks } from '@/components/dashboard/TodaysTasks'
 import { WelcomeCard } from '@/components/dashboard/WelcomeCard'
 import { AppShell } from '@/components/layout/AppShell'
 import { Card } from '@/components/ui/Card'
+import { CountBadge } from '@/components/ui/CountBadge'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { useDashboard } from '@/features/useDashboard'
 import { countUnread, useSignals } from '@/features/useSignals'
@@ -49,9 +50,11 @@ function SignalsPanel() {
         {isPending ? (
           <Skeleton className="h-6 w-7 rounded-xl" />
         ) : (
-          <span className="grid h-6 min-w-7 place-items-center rounded-xl bg-accent-amber px-2 text-meta font-semibold text-card">
-            {countUnread(signals)}
-          </span>
+          <CountBadge
+            count={countUnread(signals)}
+            label="unread signals"
+            className="h-6 min-w-7"
+          />
         )}
       </div>
 
