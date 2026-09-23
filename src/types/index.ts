@@ -3,8 +3,14 @@
 /** Whoever a signal is about: a contact on some rows, a company on others. */
 export type Actor = {
   name: string
-  /** An imported image, so the URL Vite emits rather than an id to look up. */
+  /** The mark on its own, as a read row draws it. */
   avatar: string
+  /**
+   * The same mark with the unread dot baked into its corner. The export ships
+   * the two states as separate images rather than composing the dot in CSS,
+   * and its canvas is 2px larger on each side to make room for the dot.
+   */
+  avatarUnread: string
 }
 
 type ContactSignal = {

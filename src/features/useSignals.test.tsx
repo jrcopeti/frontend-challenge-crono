@@ -44,7 +44,11 @@ describe('countUnread', () => {
     kind: 'website_view',
     read,
     date: '2025-04-02',
-    account: { name: 'Amazon', avatar: 'amazon' },
+    account: {
+      name: 'Amazon',
+      avatar: '/read.png',
+      avatarUnread: '/unread.png',
+    },
     pages: 2,
     seconds: 65,
   })

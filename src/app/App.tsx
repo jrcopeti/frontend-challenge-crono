@@ -5,10 +5,12 @@ import { RepliesCard } from '@/components/dashboard/RepliesCard'
 import { TodaysTasks } from '@/components/dashboard/TodaysTasks'
 import { WelcomeCard } from '@/components/dashboard/WelcomeCard'
 import { AppShell } from '@/components/layout/AppShell'
+import { SignalActionMenu } from '@/components/signals/SignalActionMenu'
 import { SignalsCard } from '@/components/signals/SignalsCard'
 import { Card } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { useDashboard } from '@/features/useDashboard'
+import { useCompleteSignal, useDeleteSignal } from '@/features/useSignalActions'
 import { countUnread, useSignals } from '@/features/useSignals'
 import type { Dashboard } from '@/types'
 
@@ -35,15 +37,28 @@ function DashboardColumns({ data }: { data: Dashboard }) {
   )
 }
 
-/** Wires the Signals card to the query; phase 8 adds the Action menu. */
+/** Wires the Signals card to the query and the two mutations. */
 function SignalsPanel() {
   const { data: signals, isPending } = useSignals()
+  const complete = useCompleteSignal()
+  const remove = useDeleteSignal()
 
   return (
     <SignalsCard
       signals={signals}
       unreadCount={countUnread(signals)}
       isPending={isPending}
+      renderAction={(signal) => (
+        <SignalActionMenu
+          label={`Action for the signal about ${
+            signal.kind === 'website_view'
+              ? signal.account.name
+              : signal.person.name
+          }`}
+          onComplete={() => complete.mutate(signal.id)}
+          onDelete={() => remove.mutate(signal.id)}
+        />
+      )}
     />
   )
 }

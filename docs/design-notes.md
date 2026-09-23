@@ -39,7 +39,13 @@ and a signal type label — so they are named by hue rather than by use site:
 | Purple | `#8846dc` / `#f2eaff`                               |
 | Pink   | `#e769cb` / `#fde5f8`                               |
 
-Cards are white with a **1px `#e6e9f2` border and no shadow**.
+Cards are white with a **1px `#e6e9f2` border and no shadow**. The Action menu
+is the only surface that casts one, and its tint is neutral grey rather than
+ink — every sampled pixel around it has r=g=b. Fitted to that falloff (about
+7px to the sides, 11px below and barely 2px above) it is
+`0 5px 12px rgb(0 0 0 / 0.1)`, carried by `--shadow-menu`. The offset is most
+of what keeps the top edge clean: a wider blur with a smaller offset spreads
+above the menu, where the export has almost nothing.
 
 The wordmark carries its own teal, `#07c8c0` — a third teal, distinct from both
 brand tokens. The asset is used unaltered rather than tinted to a token, because
@@ -186,6 +192,14 @@ half strength. Rendering a crisp 1px line at the same position is correct.
   and the thumb are both `#e6e9f2`, so a scan for non-white pixels across a
   separator row reads as one unbroken run to the card's border. Check for the
   white gap, or read a row below the thumb's travel.
+- **The Action menu's padding is 7px, not 8.** Its 216×96 counts the 1px
+  border, so 1 + 7 + 40 + 40 + 7 + 1 is what leaves each item exactly 200×40.
+  Its corner is 16px — the border arc matches the cards', not the 12px tiles'.
+- **The menu's icons keep their own size inside a 24px box**: the check is
+  20×20 and the trash 14×16. Forcing both to 24 stretches the trash, which is
+  not square.
+- **The menu is right-aligned to its button**, 9px below it — 772 + 216 lands
+  on the button's right edge at 988.
 - **"2 pages" is teal but not bold.** Only the subject — the person or the
   account — carries weight; the highlight is colour alone.
 - **The "In sequence" chip is 10px type**, not the 12px the labels beside it
@@ -193,8 +207,14 @@ half strength. Rendering a crisp 1px line at the same position is correct.
   72px wide where the export measures 60.
 - **"2 pages" is `brand-strong`**, the same teal as the links, not the lighter
   `brand` of the Action button beside it.
-- **The unread dot sits inside the avatar's box**, not beside it: avatar and
-  dot together measure exactly 32×32.
+- **The unread dot is baked into the avatar image**, not drawn over it. The
+  export ships two files: `brand-amazon.png` on a 96px canvas for a read row,
+  and `signal-brand-amazon.png` on a 102px canvas whose extra 3px a side hold
+  the dot. Both carry the same 90px circle, so both are thirds: the read one
+  renders at 32px and the unread at 34px offset by -2, which puts the dot at
+  (16,84) and the circle at (17,85) exactly as the export draws them. Compose
+  the dot in CSS instead and it doubles up on the baked one, and a round clip
+  cuts its corner off.
 - **Role change and Company change share a sentence.** Both read "Robert Smith
   changed role from SDR to Senior SDR at WeRoad"; only the coloured label
   differs. So the two kinds carry the same fields and `kind` selects the label,
