@@ -61,8 +61,11 @@
   --color-accent-red: #ed4c5e;
   --color-accent-red-soft: #ffe9e9;
   --color-accent-amber: #f9bb06; /* badges, Upgrade button, trial card accent */
-  --color-accent-amber-ink: #c69812; /* the amber that reads as text */
-  --color-accent-amber-bar: #e2ad13;
+  /* Two ambers, and which one applies is per-card, not per-role: the Pending
+     Manual count is #c69812 and the Meetings KPI figure is #e2ad13, though
+     both are text. Sampled; don't infer one from the other. */
+  --color-accent-amber-ink: #c69812; /* Today's tasks count */
+  --color-accent-amber-bar: #e2ad13; /* KPI figure, KPI icon, KPI bar */
   --color-accent-amber-soft: #fef3d2;
   --color-accent-blue: #3b85e8;
   --color-accent-blue-soft: #eaf1fb;

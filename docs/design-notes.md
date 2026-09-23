@@ -162,6 +162,10 @@ half strength. Rendering a crisp 1px line at the same position is correct.
 - **The info icon darkens from `#7a8395` to `#010e27` on hover** — the second
   frame shows it under the cursor.
 - **The Pipeline row has no icon** — its `€` is part of the text.
+- **There are two ambers and the split is per-card, not per-role.** The Pending
+  Manual count is `#c69812`; the Meetings KPI figure and icon are `#e2ad13`,
+  though both are text. The task card contains no `#e2ad13` at all and the KPI
+  figure is `#e2ad13` exactly, so neither can be inferred from the other.
 - **Signal type labels are colour-coded by kind**: Role change purple, Company
   change blue, Website view pink — the same hues as the KPI bars.
 - **Dashboard and Lists share one nav glyph**, differing only in colour.
