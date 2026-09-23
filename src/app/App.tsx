@@ -5,8 +5,8 @@ import { RepliesCard } from '@/components/dashboard/RepliesCard'
 import { TodaysTasks } from '@/components/dashboard/TodaysTasks'
 import { WelcomeCard } from '@/components/dashboard/WelcomeCard'
 import { AppShell } from '@/components/layout/AppShell'
+import { SignalsCard } from '@/components/signals/SignalsCard'
 import { Card } from '@/components/ui/Card'
-import { CountBadge } from '@/components/ui/CountBadge'
 import { Skeleton } from '@/components/ui/Skeleton'
 import { useDashboard } from '@/features/useDashboard'
 import { countUnread, useSignals } from '@/features/useSignals'
@@ -35,50 +35,16 @@ function DashboardColumns({ data }: { data: Dashboard }) {
   )
 }
 
-/**
- * Stands in for the Signals card until the next phase builds it. It reads the
- * real query so the async layer, its loading state and the derived unread count
- * are exercised now rather than on paper.
- */
+/** Wires the Signals card to the query; phase 8 adds the Action menu. */
 function SignalsPanel() {
   const { data: signals, isPending } = useSignals()
 
   return (
-    <Card className="h-[412px] p-4">
-      <div className="flex items-center gap-1.5">
-        <h2 className="text-title font-semibold text-ink">Signals</h2>
-        {isPending ? (
-          <Skeleton className="h-6 w-7 rounded-xl" />
-        ) : (
-          <CountBadge
-            count={countUnread(signals)}
-            label="unread signals"
-            className="h-6 min-w-7"
-          />
-        )}
-      </div>
-
-      <ul className="mt-3 flex flex-col gap-4">
-        {isPending
-          ? Array.from({ length: 5 }, (_, i) => (
-              <li key={i} className="flex h-10 items-center gap-3">
-                <Skeleton className="size-8 shrink-0 rounded-full" />
-                <Skeleton className="h-4 w-[420px]" />
-              </li>
-            ))
-          : signals?.slice(0, 5).map((signal) => (
-              <li key={signal.id} className="flex h-10 items-center gap-3">
-                <span className="size-8 shrink-0 rounded-full bg-border" />
-                <span className="text-body text-muted">
-                  {signal.kind} ·{' '}
-                  {signal.kind === 'website_view'
-                    ? signal.account.name
-                    : signal.person.name}
-                </span>
-              </li>
-            ))}
-      </ul>
-    </Card>
+    <SignalsCard
+      signals={signals}
+      unreadCount={countUnread(signals)}
+      isPending={isPending}
+    />
   )
 }
 

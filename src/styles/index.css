@@ -32,7 +32,9 @@
   --text-title--line-height: 1.375rem;
   --text-body: 0.875rem; /* 14px/20 — nearly everything */
   --text-body--line-height: 1.25rem;
-  --text-meta: 0.75rem; /* 12px — dates, durations, KPI labels */
+  --text-micro: 0.6875rem; /* 11px/14 — the signal row's date, the only 11px */
+  --text-micro--line-height: 0.875rem;
+  --text-meta: 0.75rem; /* 12px — durations, KPI labels, type labels */
   --text-meta--line-height: 1.35;
 
   /* Surfaces -------------------------------------------------------------- */
