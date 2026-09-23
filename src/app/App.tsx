@@ -29,7 +29,8 @@ function DashboardColumns({ data }: { data: Dashboard }) {
         <SignalsPanel />
       </div>
 
-      <div className="flex flex-col gap-2">
+      {/* 5px lower than the main column, as the export draws it. */}
+      <div className="flex flex-col gap-2 lg:mt-[5px]">
         <PerformanceCard month={data.month} kpis={data.kpis} />
         <OnboardingCard steps={data.onboarding} />
       </div>
@@ -75,7 +76,7 @@ function DashboardSkeleton() {
         <Skeleton className="h-[148px] rounded-card" />
         <Skeleton className="h-[412px] rounded-card" />
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 lg:mt-[5px]">
         <Skeleton className="h-[293px] rounded-card" />
         <Skeleton className="h-[412px] rounded-card" />
       </div>
