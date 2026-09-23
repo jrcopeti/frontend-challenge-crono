@@ -59,12 +59,13 @@ Judgement calls where the export is internally inconsistent, or where matching i
 conflicts with another goal. All are deliberate, and each is explained in
 [`docs/design-notes.md`](docs/design-notes.md).
 
-| Item                                                                              | Decision                                                                  |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| The right rail's top card sits 5px lower than the main column's                   | Aligned to the same top                                                   |
-| KPI bars contradict their own numbers ("Companies engaged 0/500" drawn ~52% full) | Bars derive from `value / max`, so two of six differ from the export      |
-| Amber badges use white text (~1.9:1, below WCAG AA)                               | Kept, because fidelity is the brief; sampled from the export, not assumed |
-| Only the two generic disclosure chevrons are not design exports                   | Lucide, since every distinctive glyph was exported from Figma             |
+| Item                                                                                | Decision                                                                                                                                               |
+| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| The right rail's top card sits 5px lower than the main column's                     | Aligned to the same top                                                                                                                                |
+| KPI bars contradict their own numbers ("Companies engaged 0/500" is drawn 53% full) | Reproduced as drawn — fidelity is the brief. Five of six are 88px of 166 in the export, carried as data; `aria-valuenow` still reports the true figure |
+| Amber badges use white text (~1.9:1, below WCAG AA)                                 | Kept, because fidelity is the brief; sampled from the export, not assumed                                                                              |
+| Only the two generic disclosure chevrons are not design exports                     | Lucide, since every distinctive glyph was exported from Figma                                                                                          |
+| The gap between a KPI icon and its figure varies across the export's own tiles      | One uniform 16px icon box + 4px gap; matches five rows, 3px off on the sixth                                                                           |
 
 ## Design source
 

@@ -24,6 +24,7 @@ export function ProgressBar({
   max,
   tone,
   label,
+  fill,
   className,
 }: {
   value: number
@@ -31,10 +32,26 @@ export function ProgressBar({
   tone: ProgressTone
   /** Names the metric for assistive tech, e.g. "Activities". */
   label: string
+  /**
+   * The fraction the export draws, 0–1, when it disagrees with `value / max`.
+   *
+   * The design's KPI bars do not derive from their own figures — five of the
+   * six are drawn at exactly 88px of 166 whatever the numbers beside them say.
+   * Fidelity to the design is the brief, so the bar renders this when given.
+   * `aria-valuenow` still reports the real figure, so assistive tech is told
+   * what the text says rather than what the mockup drew.
+   */
+  fill?: number
   className?: string
 }) {
-  const percent = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0
-  const { fill, track } = TONES[tone]
+  const clamp = (n: number) => Math.min(100, Math.max(0, n))
+  const percent =
+    fill !== undefined
+      ? clamp(fill * 100)
+      : max > 0
+        ? clamp((value / max) * 100)
+        : 0
+  const { fill: fillColour, track } = TONES[tone]
 
   return (
     <div
@@ -50,7 +67,7 @@ export function ProgressBar({
       )}
     >
       <div
-        className={cn('h-full rounded-full', fill)}
+        className={cn('h-full rounded-full', fillColour)}
         style={{ width: `${percent}%` }}
       />
     </div>

@@ -26,6 +26,8 @@
   --text-stat--line-height: 1.1;
   --text-display: 1.5rem; /* 24px/30 — "Welcome Alex,", task tile counts */
   --text-display--line-height: 1.875rem;
+  --text-figure: 1rem; /* 16px/24 — the KPI figures */
+  --text-figure--line-height: 1.5rem;
   --text-title: 0.875rem; /* 14px/22 — card titles, at weight 600 */
   --text-title--line-height: 1.375rem;
   --text-body: 0.875rem; /* 14px/20 — nearly everything */
@@ -43,6 +45,7 @@
   --color-ink: #010e27; /* headings, names, menu items */
   --color-ink-soft: #3e485b; /* tile labels, KPI labels */
   --color-muted: #7a8395; /* body copy, dates, inactive nav */
+  --color-faint: #afb5bf; /* the "/500" denominator in a KPI */
 
   /* Brand ----------------------------------------------------------------- */
   --color-brand: #1ebab2; /* Action button, logo, onboarding accent */
@@ -69,8 +72,10 @@
   --color-accent-green-soft: #e8f5d9;
   --color-accent-purple: #8846dc;
   --color-accent-purple-soft: #f2eaff;
+  --color-accent-purple-light: #995aff; /* the Activities icon only */
   --color-accent-pink: #e769cb;
   --color-accent-pink-soft: #fde5f8;
+  --color-accent-pink-light: #f376d8; /* the Deals icon only */
 
   /* Onboarding icon accents ----------------------------------------------- */
   --color-onboarding-teal: #1ebab2;

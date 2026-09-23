@@ -62,6 +62,7 @@ heights below are the designer's own Figma values.
 | "Welcome Alex,"                     | 24 / 700 / 30               | `--text-display`                 |
 | Task tile counts                    | 24 / 500 / 30               | `--text-display`                 |
 | Replies count                       | 36 / 600                    | `--text-stat`                    |
+| KPI figures                         | 16 / 500 / 24               | `--text-figure`                  |
 | Card titles                         | 14 / 600 / 22               | `--text-title`                   |
 | Body, Welcome paragraph             | 14 / 400 / 20               | `--text-body`                    |
 | "Open inbox" link                   | 14 / 500 / 18               | `--text-body` + `leading-[18px]` |
@@ -81,6 +82,11 @@ than size carries the hierarchy.
 Measured from the export, then verified by reading `getBoundingClientRect` in a
 browser at 1440×750 and comparing against those measurements.
 
+**Figma measures a frame's padding from its outer edge; CSS measures it from
+inside the border.** On a bordered card the two differ by 1px per side, which is
+why the KPI card is `px-[15px]` and the Onboarding card `pl-[15px] pr-[18px]`:
+16 and 19 would leave the grid 2px narrow and shift every tile right.
+
 |                   | Value                                            |
 | ----------------- | ------------------------------------------------ |
 | Sidebar           | 192px (191 + 1px right border)                   |
@@ -90,11 +96,14 @@ browser at 1440×750 and comparing against those measurements.
 | Column gap        | 8px                                              |
 | Main card rows    | y=16 h=142 · y=166 h=148 · y=322 h=412           |
 | Nav rows          | 40px tall, 48px pitch, 8px gap                   |
-| KPI tiles         | 184×72, 8px gaps, 16px card padding              |
-| KPI progress bars | 3px tall, 164px wide, 10px tile padding          |
+| KPI card          | 408×293, 2×3 grid, 8px gutters                   |
+| KPI tiles         | 184×71, 8px tile padding, first row at y=49      |
+| KPI progress bars | 3px tall, 166px wide, at tile y+60               |
+| Onboarding card   | 408×412, list 373×332 at y=50                    |
+| Onboarding rows   | 40px tall, icons 40×40, 73px pitch               |
 | Action buttons    | 90×32, rows pitched 73px                         |
 | Dropdown menu     | 214×96, 40px items, 8px padding, `#e9f8f8` hover |
-| Tooltip           | 246×67                                           |
+| Tooltip           | 246×64 body + a 8×3 caret, 16px line pitch       |
 
 ---
 
@@ -105,7 +114,7 @@ browser at 1440×750 and comparing against those measurements.
 | Cards                     | 16px  | `--radius-card`    |
 | Task tiles, Replies panel | 12px  | `--radius-tile`    |
 | Action button, menu       | 12px  | `--radius-control` |
-| Trial card                | 8px   | `--radius-callout` |
+| Trial card, KPI tiles     | 8px   | `--radius-callout` |
 | "Upgrade plan", tooltip   | 6px   | `--radius-chip`    |
 
 These were wrong at first, and the reason is worth recording. Reading absolute
@@ -138,6 +147,21 @@ half strength. Rendering a crisp 1px line at the same position is correct.
   16/8/16 _because the wider ones carry the rule_ — which looks like a slip until
   the rules are accounted for. `TodaysTasks` takes groups so the grouping lives
   in the data rather than in an index check in the view.
+- **The Onboarding rules carry the list's height.** Five 40px rows would measure
+  264px, but the list is 332: every gap is 16 + a 1px rule + 16. Same trap as the
+  task tiles — the rule is structural, not decoration.
+- **A KPI's icon is not always its number's colour.** Activities draws a
+  `#995aff` glyph above a `#8846dc` number and bar; Deals `#f376d8` above
+  `#e769cb`. The other four rows use one colour throughout. Sampled, not a slip.
+- **The Pipeline bar's track is `#e9f8f8` (brand-soft), not
+  `accent-green-soft`** — that lighter green belongs to the Completed task tile.
+- **Every KPI bar in the export is drawn 88px of 166**, whatever its figures
+  say; only Contacts engaged is drawn empty. One bar copied across the grid.
+  These fills are carried as data so the screen matches the design, while
+  `aria-valuenow` keeps the real figure.
+- **The info icon darkens from `#7a8395` to `#010e27` on hover** — the second
+  frame shows it under the cursor.
+- **The Pipeline row has no icon** — its `€` is part of the text.
 - **Signal type labels are colour-coded by kind**: Role change purple, Company
   change blue, Website view pink — the same hues as the KPI bars.
 - **Dashboard and Lists share one nav glyph**, differing only in colour.
@@ -148,12 +172,12 @@ half strength. Rendering a crisp 1px line at the same position is correct.
 
 ## Deliberate deviations from the design
 
-| Item                                                                                                          | Decision                                                                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The right rail's top card sits 5px lower than the main column's                                               | Aligned to the same top                                                                                                                                                 |
-| KPI bars contradict their own numbers — "Companies engaged 0/500" is drawn ~52% full, as is Meetings at 20/30 | Bars derive from `value / max`, so two of six differ from the export. A bar that disagrees with the number beside it is worse than a bar that disagrees with the mockup |
-| Amber badges use white text (~1.9:1, below WCAG AA)                                                           | Kept — fidelity is the brief, and the colour was sampled rather than assumed. Flagged here rather than silently "fixed"                                                 |
-| The design's nav glyphs, the Onboarding icons and the brand avatars                                           | All are the designer's own exports. Only the two generic disclosure chevrons come from Lucide                                                                           |
+| Item                                                                                                                                                                                      | Decision                                                                                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The right rail's top card sits 5px lower than the main column's                                                                                                                           | Aligned to the same top                                                                                                                                                                             |
+| Amber badges use white text (~1.9:1, below WCAG AA)                                                                                                                                       | Kept — fidelity is the brief, and the colour was sampled rather than assumed. Flagged here rather than silently "fixed"                                                                             |
+| The design's nav glyphs, the Onboarding icons and the brand avatars                                                                                                                       | All are the designer's own exports. Only the two generic disclosure chevrons come from Lucide                                                                                                       |
+| The gap between a KPI icon and its figure is not consistent in the export — the figure starts +20px into the tile on five rows but +17px on Contacts engaged, whose glyph is 2px narrower | One uniform rule: a 16px icon box and a 4px gap. That matches five rows exactly and leaves Contacts engaged 3px right of the export. Consistency across the grid beats matching a nudge on one tile |
 
 ---
 
