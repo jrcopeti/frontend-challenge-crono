@@ -1,4 +1,5 @@
-import avatar from '@/assets/figma/signal-brand-amazon.png'
+import avatar from '@/assets/figma/brand-amazon.png'
+import avatarUnread from '@/assets/figma/signal-brand-amazon.png'
 import type { Signal } from '@/types'
 
 /**
@@ -9,8 +10,8 @@ import type { Signal } from '@/types'
  * chip, then two website views — cycled to twelve. Every row carries the same
  * Amazon mark, whoever the row is about, because the design does.
  */
-const contact = { name: 'Robert Smith', avatar }
-const account = { name: 'Amazon', avatar }
+const contact = { name: 'Robert Smith', avatar, avatarUnread }
+const account = { name: 'Amazon', avatar, avatarUnread }
 
 const aboutContact = (id: string, inSequence: boolean) => ({
   id,

@@ -4,26 +4,46 @@ import { describe, expect, it } from 'vitest'
 import { SignalsCard } from '@/components/signals/SignalsCard'
 import type { Signal } from '@/types'
 
-const person = { name: 'Robert Smith', avatar: '/avatar.png' }
-const account = { name: 'Amazon', avatar: '/avatar.png' }
+const person = {
+  name: 'Robert Smith',
+  avatar: '/read.png',
+  avatarUnread: '/unread.png',
+}
+const account = {
+  name: 'Amazon',
+  avatar: '/read.png',
+  avatarUnread: '/unread.png',
+}
 
-const roleChange: Signal = {
-  id: 'a',
-  kind: 'role_change',
-  read: false,
+/** Spreading a union member widens it, so the shared fields live here. */
+const aboutContact = {
   date: '2025-04-02',
   person,
   fromRole: 'SDR',
   toRole: 'Senior SDR',
   company: 'WeRoad',
+}
+
+const roleChange: Signal = {
+  ...aboutContact,
+  id: 'a',
+  kind: 'role_change',
+  read: false,
   inSequence: true,
 }
 
-const companyChange: Signal = { ...roleChange, id: 'b', kind: 'company_change' }
+const companyChange: Signal = {
+  ...aboutContact,
+  id: 'b',
+  kind: 'company_change',
+  read: false,
+  inSequence: true,
+}
 
 const readNoChip: Signal = {
-  ...roleChange,
+  ...aboutContact,
   id: 'c',
+  kind: 'role_change',
   read: true,
   inSequence: false,
 }
@@ -87,8 +107,9 @@ describe('SignalsCard', () => {
   it('marks unread signals and leaves read ones unmarked', () => {
     renderCard()
 
-    // Three of the four are unread; the read one carries no dot.
-    expect(screen.getAllByRole('img', { name: 'Unread' })).toHaveLength(3)
+    // Three of the four are unread. The dot is baked into the image, so the
+    // state is announced with text rather than a labelled graphic.
+    expect(screen.getAllByText('Unread')).toHaveLength(3)
   })
 
   it('formats the date the way the export writes it', () => {

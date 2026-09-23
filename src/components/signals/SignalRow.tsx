@@ -1,6 +1,6 @@
 import { SignalText, SignalTypeLabel } from '@/components/signals/SignalText'
-import { Avatar } from '@/components/ui/Avatar'
 import { Pill } from '@/components/ui/Pill'
+import { cn } from '@/lib/cn'
 import type { Signal } from '@/types'
 
 /** "2025-04-02" as the export writes it: "Apr 2, 2025". */
@@ -33,16 +33,24 @@ export function SignalRow({
 
   return (
     <div className="flex h-10 items-center gap-4 pr-[6px] pl-[15px]">
-      <span className="relative flex shrink-0">
-        <Avatar src={who.avatar} name={who.name} size={32} />
-        {!signal.read && (
-          <span
-            // The unread mark sits inside the avatar's top-left corner.
-            className="absolute top-0 left-0 size-2 rounded-full bg-accent-amber"
-            aria-label="Unread"
-            role="img"
-          />
-        )}
+      <span className="relative flex size-8 shrink-0">
+        {/*
+          A plain image, not the circular Avatar: these marks carry their own
+          circle, and the unread one carries the dot too, which a round clip
+          would cut off. The unread file's canvas is 2px wider on each side to
+          hold that dot, so it is drawn at 34px offset by -2 — which lands both
+          the dot and the circle exactly where the export draws them.
+        */}
+        <img
+          src={signal.read ? who.avatar : who.avatarUnread}
+          alt=""
+          className={cn(
+            'size-8',
+            !signal.read &&
+              'absolute -top-0.5 -left-0.5 size-[34px] max-w-none',
+          )}
+        />
+        {!signal.read && <span className="sr-only">Unread</span>}
       </span>
 
       <span className="flex min-w-0 flex-col">
