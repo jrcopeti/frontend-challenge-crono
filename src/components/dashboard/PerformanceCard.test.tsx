@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { type Kpi } from '@/components/dashboard/KpiTile'
 import { PerformanceCard } from '@/components/dashboard/PerformanceCard'
 import { TooltipProvider } from '@/components/ui/Tooltip'
+import type { Kpi } from '@/types'
 
 const thousands = (n: number) => (n >= 1000 ? `${n / 1000}K` : String(n))
 

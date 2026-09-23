@@ -19,6 +19,8 @@ fall back once it is confirmed unavailable.
 | `info.svg` | The info affordance on "Contacts engaged", which opens the tooltip. `#7A8395` swapped for `currentColor`. |
 | `edit-kpis.svg` | The pencil beside "Edit KPIs". `#0A9B94` swapped for `currentColor`. |
 | `onboarding-*.png` (5 files) | The Onboarding checklist, drawn in a 40x40 box. Full-colour artwork, so these stay PNG. Identified by rendering rather than by filename — the export named the "Add contacts to sequence" icon `Icon_Add to Strategy.png`, which names a different row. Canvases are 120px (3x) except `onboarding-add-contact.png` at 127px; all five land within 1px of the export at 40x40. |
+| `signal-brand-amazon.png` | The avatar on every Signals row. The export uses this one mark for all rows, including the ones about a person, so there is no separate contact avatar to source. 102px for a 32px render. |
+| `signal-complete.svg`, `signal-trash.svg` | The Action menu's two items. `#0A9B94` and `#010E27` swapped for `currentColor`. |
 | `gift.svg`                                              | "Upgrade plan" button. White stroke swapped for `currentColor`.                                                                                                                                                      |
 | `trial-swoosh.svg` | Decoration on the trial card, 40x64 — exactly the card's height. Carries `mix-blend-mode: color-burn`, which only composites correctly when the blend is applied to the element: inside an `<img>` the SVG renders isolated and the swoosh comes out olive instead of pale yellow. **Optimised 304 KB -> 19 KB**: it embedded a 1668x2224 raster of which the pattern transform used only a 138x188 window, so the raster was cropped to that window and the transform re-anchored. Verified pixel-identical against the original render. |
 
@@ -26,7 +28,6 @@ fall back once it is confirmed unavailable.
 
 | Asset                                                 | Where it appears  | Status                                                          |
 | ----------------------------------------------------- | ----------------- | ---------------------------------------------------------------- |
-| Cartoon avatar | Signals rows | ⏳ requested (phase 7) |
 | Favicon                                               | Browser tab       | ⏳ requested                                                     |
 
 The Pipeline row has no icon: its `€` is part of the text, confirmed by the designer.

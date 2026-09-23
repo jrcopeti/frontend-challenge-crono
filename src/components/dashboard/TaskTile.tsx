@@ -2,8 +2,7 @@ import { ChevronRight } from 'lucide-react'
 
 import WarningIcon from '@/assets/figma/warning.svg?react'
 import { cn } from '@/lib/cn'
-
-export type TaskTone = 'overdue' | 'pendingManual' | 'pendingAuto' | 'completed'
+import type { TaskTone } from '@/types'
 
 /** Tailwind needs literal class names, so the tones are a lookup. */
 const TONES: Record<TaskTone, { surface: string; count: string }> = {

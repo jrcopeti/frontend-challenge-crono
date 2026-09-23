@@ -3,11 +3,10 @@ import ContactsIcon from '@/assets/figma/kpi-contacts.svg?react'
 import ListIcon from '@/assets/figma/kpi-list.svg?react'
 import MeetingsIcon from '@/assets/figma/kpi-meetings.svg?react'
 import InfoIcon from '@/assets/figma/info.svg?react'
-import { ProgressBar, type ProgressTone } from '@/components/ui/ProgressBar'
+import { ProgressBar } from '@/components/ui/ProgressBar'
 import { Tooltip } from '@/components/ui/Tooltip'
 import { cn } from '@/lib/cn'
-
-export type KpiTone = ProgressTone
+import type { Kpi, KpiTone } from '@/types'
 
 /**
  * Per-tone colours. The icon is a lighter tint than the number beside it on
@@ -30,23 +29,6 @@ const ICONS = {
   list: ListIcon,
   meetings: MeetingsIcon,
 } as const
-
-export type Kpi = {
-  label: string
-  value: number
-  max: number
-  tone: KpiTone
-  /** Pipeline is the one row the design draws without a glyph. */
-  icon?: keyof typeof ICONS
-  /** Renders 50000 as "50K". Applied to both figures. */
-  format?: (n: number) => string
-  /** Sits on the value only, so the design's "€50K /100K" comes out right. */
-  prefix?: string
-  /** Present only on Contacts engaged, which carries the info tooltip. */
-  hint?: string
-  /** The fraction the export draws, where it disagrees with value / max. */
-  fill?: number
-}
 
 /**
  * One 184×71 cell of the performance grid: label, figure, meter.

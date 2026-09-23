@@ -3,8 +3,7 @@ import { ChevronRight } from 'lucide-react'
 import MailIcon from '@/assets/figma/replies-mail.svg?react'
 import { Card, CardTitle } from '@/components/ui/Card'
 import { AvatarStack } from '@/components/ui/Avatar'
-
-export type Replier = { name: string; src: string }
+import type { Replier } from '@/types'
 
 /**
  * Reply count with the accounts that replied. The teal panel is 80px tall with

@@ -24,6 +24,16 @@ describe('App shell', () => {
     )
   })
 
+  it('names the unread signals count for assistive tech', async () => {
+    render(<App />)
+
+    // A bare "12" tells a screen reader nothing, and the count arrives from
+    // the async layer, so it has to be awaited.
+    expect(
+      await screen.findByLabelText('12 unread signals'),
+    ).toBeInTheDocument()
+  })
+
   it('collapses and expands the sidebar', async () => {
     const user = userEvent.setup()
     render(<App />)
