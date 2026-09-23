@@ -49,7 +49,6 @@ export const useCompleteSignal = () =>
     ),
   )
 
-/** Removes the row outright. */
 export const useDeleteSignal = () =>
   useSignalMutation(deleteSignal, (signals, id) =>
     signals.filter((signal) => signal.id !== id),

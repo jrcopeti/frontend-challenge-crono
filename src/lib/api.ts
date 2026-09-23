@@ -6,8 +6,8 @@ import type { Dashboard, Signal } from '@/types'
  * The seam where a real API would go.
  *
  * There is no backend. These functions return the seed data after a short
- * delay, so the query layer, its loading states and phase 8's optimistic
- * updates are exercised for real rather than mocked away.
+ * delay, so the query layer, its loading states and the optimistic updates are
+ * exercised for real rather than mocked away.
  */
 
 /** Latency a local call never has, so the loading states are visible. */
@@ -47,7 +47,6 @@ export async function completeSignal(id: string): Promise<Signal[]> {
   return signals
 }
 
-/** Removes a signal outright. */
 export async function deleteSignal(id: string): Promise<Signal[]> {
   await delay()
   if (!signals.some((s) => s.id === id))

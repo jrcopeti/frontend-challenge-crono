@@ -38,7 +38,6 @@ function DashboardColumns({ data }: { data: Dashboard }) {
   )
 }
 
-/** Wires the Signals card to the query and the two mutations. */
 function SignalsPanel() {
   const { data: signals, isPending } = useSignals()
   const complete = useCompleteSignal()

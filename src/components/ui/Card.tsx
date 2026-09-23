@@ -1,6 +1,6 @@
 import { cn } from '@/lib/cn'
 
-/** The white panel every dashboard section sits in: 1px border, 12px radius, no shadow. */
+/** The white panel every dashboard section sits in: 1px border, 16px radius, no shadow. */
 export function Card({ className, ...props }: React.ComponentProps<'section'>) {
   return (
     <section
@@ -10,7 +10,6 @@ export function Card({ className, ...props }: React.ComponentProps<'section'>) {
   )
 }
 
-/** Section heading inside a card. */
 export function CardTitle({
   className,
   children,
