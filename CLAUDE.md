@@ -2,6 +2,15 @@
 
 Guidance for working in this repository.
 
+## Read this first
+
+- **`docs/design-notes.md`** — how every design value was derived from the
+  export, and why the implementation deliberately differs where it does. Read it
+  before touching anything visual, and add to it whenever a value is confirmed.
+- **`PLAN.md`** — scratch file holding the current phase status and what is
+  waiting on the user. Not committed, so it will not exist in a fresh clone;
+  that is expected, and nothing in it is needed to understand the code.
+
 ## Working agreement
 
 ### Git — stage only, never commit
