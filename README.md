@@ -91,7 +91,7 @@ conflicts with another goal. All are deliberate, and each is explained in
 | Item                                                                                | Decision                                                                                                                                               |
 | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | KPI bars contradict their own numbers ("Companies engaged 0/500" is drawn 53% full) | Reproduced as drawn — fidelity is the brief. Five of six are 88px of 166 in the export, carried as data; `aria-valuenow` still reports the true figure |
-| Amber badges use white text (~1.9:1, below WCAG AA)                                 | Kept, because fidelity is the brief; sampled from the export, not assumed                                                                              |
+| Amber badges use white text (1.73:1, below WCAG AA)                                 | Kept, because fidelity is the brief; sampled from the export, not assumed                                                                              |
 | Only the two generic disclosure chevrons are not design exports                     | Lucide, since every distinctive glyph was exported from Figma                                                                                          |
 | The gap between a KPI icon and its figure varies across the export's own tiles      | One uniform 16px icon box + 4px gap; matches five rows, 3px off on the sixth                                                                           |
 
