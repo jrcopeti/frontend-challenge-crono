@@ -87,23 +87,27 @@ inside the border.** On a bordered card the two differ by 1px per side, which is
 why the KPI card is `px-[15px]` and the Onboarding card `pl-[15px] pr-[18px]`:
 16 and 19 would leave the grid 2px narrow and shift every tile right.
 
-|                   | Value                                            |
-| ----------------- | ------------------------------------------------ |
-| Sidebar           | 192px (191 + 1px right border)                   |
-| Page padding      | 16px                                             |
-| Main column       | x=208, width 800                                 |
-| Right rail        | x=1016, width 408                                |
-| Column gap        | 8px                                              |
-| Main card rows    | y=16 h=142 · y=166 h=148 · y=322 h=412           |
-| Nav rows          | 40px tall, 48px pitch, 8px gap                   |
-| KPI card          | 408×293, 2×3 grid, 8px gutters                   |
-| KPI tiles         | 184×71, 8px tile padding, first row at y=49      |
-| KPI progress bars | 3px tall, 166px wide, at tile y+60               |
-| Onboarding card   | 408×412, list 373×332 at y=50                    |
-| Onboarding rows   | 40px tall, icons 40×40, 73px pitch               |
-| Action buttons    | 90×32, rows pitched 73px                         |
-| Dropdown menu     | 214×96, 40px items, 8px padding, `#e9f8f8` hover |
-| Tooltip           | 246×64 body + a 8×3 caret, 16px line pitch       |
+|                   | Value                                         |
+| ----------------- | --------------------------------------------- |
+| Sidebar           | 192px (191 + 1px right border)                |
+| Page padding      | 16px                                          |
+| Main column       | x=208, width 800                              |
+| Right rail        | x=1016, width 408                             |
+| Column gap        | 8px                                           |
+| Main card rows    | y=16 h=142 · y=166 h=148 · y=322 h=412        |
+| Nav rows          | 40px tall, 48px pitch, 8px gap                |
+| KPI card          | 408×293, 2×3 grid, 8px gutters                |
+| KPI tiles         | 184×71, 8px tile padding, first row at y=49   |
+| KPI progress bars | 3px tall, 166px wide, at tile y+60            |
+| Onboarding card   | 408×412, list 373×332 at y=50                 |
+| Onboarding rows   | 40px tall, icons 40×40, 73px pitch            |
+| Signals card      | 800×412, 16px top padding, 12px gap           |
+| Signals list      | 800×332, 4px right padding, 16px gap          |
+| Signal rows       | 796×40, 16px side padding, 32px avatar        |
+| Action buttons    | 90×32, radius 34 (a pill), 16px side padding  |
+| Dropdown menu     | 216×96, 200×40 items at radius 8, 8px padding |
+| "In sequence"     | 70×16, radius 12 (a pill), 2/4 padding        |
+| Tooltip           | 246×64 body + a 8×3 caret, 16px line pitch    |
 
 ---
 
@@ -113,9 +117,17 @@ why the KPI card is `px-[15px]` and the Onboarding card `pl-[15px] pr-[18px]`:
 | ------------------------- | ----- | ------------------ |
 | Cards                     | 16px  | `--radius-card`    |
 | Task tiles, Replies panel | 12px  | `--radius-tile`    |
-| Action button, menu       | 12px  | `--radius-control` |
 | Trial card, KPI tiles     | 8px   | `--radius-callout` |
+| Signals menu items        | 8px   | `--radius-callout` |
 | "Upgrade plan", tooltip   | 6px   | `--radius-chip`    |
+
+Several of the design's "radius 12" values are really pills: the Signals count
+chip is 28×24 at radius 12 and the "In sequence" chip 70×16 at radius 12, and a
+radius at or past half the height renders as a full round. Figma reports the
+authored radius; the browser clamps it. Those take `rounded-full`, as does the
+Action button at 90×32 with radius 34. There is no `--radius-control` token —
+an earlier estimate put the button and the menu both at 12px and both were
+wrong, so it was removed rather than left to mislead.
 
 These were wrong at first, and the reason is worth recording. Reading absolute
 pixel counts off the export **understates** a radius: an antialiased curve only
@@ -166,6 +178,11 @@ half strength. Rendering a crisp 1px line at the same position is correct.
   Manual count is `#c69812`; the Meetings KPI figure and icon are `#e2ad13`,
   though both are text. The task card contains no `#e2ad13` at all and the KPI
   figure is `#e2ad13` exactly, so neither can be inferred from the other.
+- **Role change and Company change share a sentence.** Both read "Robert Smith
+  changed role from SDR to Senior SDR at WeRoad"; only the coloured label
+  differs. So the two kinds carry the same fields and `kind` selects the label,
+  not the wording. The seed data reproduces the export's rows exactly and
+  repeats them to the twelve the count chip reports.
 - **Signal type labels are colour-coded by kind**: Role change purple, Company
   change blue, Website view pink — the same hues as the KPI bars.
 - **Dashboard and Lists share one nav glyph**, differing only in colour.

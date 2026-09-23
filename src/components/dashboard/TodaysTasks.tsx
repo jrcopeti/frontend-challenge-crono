@@ -1,15 +1,8 @@
 import { Fragment } from 'react'
 
-import { TaskTile, type TaskTone } from '@/components/dashboard/TaskTile'
+import { TaskTile } from '@/components/dashboard/TaskTile'
 import { Card, CardTitle } from '@/components/ui/Card'
-
-export type TaskSummary = {
-  tone: TaskTone
-  count: number
-  label: string
-  errors?: number
-  actionable?: boolean
-}
+import type { TaskSummary } from '@/types'
 
 /**
  * The four task tiles.

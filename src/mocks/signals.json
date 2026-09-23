@@ -1,0 +1,162 @@
+[
+  {
+    "id": "sig-01",
+    "kind": "role_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": true
+  },
+  {
+    "id": "sig-02",
+    "kind": "company_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": true
+  },
+  {
+    "id": "sig-03",
+    "kind": "role_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": false
+  },
+  {
+    "id": "sig-04",
+    "kind": "website_view",
+    "read": false,
+    "date": "2025-04-02",
+    "account": {
+      "name": "Amazon",
+      "avatar": "amazon"
+    },
+    "pages": 2,
+    "seconds": 65
+  },
+  {
+    "id": "sig-05",
+    "kind": "website_view",
+    "read": false,
+    "date": "2025-04-02",
+    "account": {
+      "name": "Amazon",
+      "avatar": "amazon"
+    },
+    "pages": 2,
+    "seconds": 65
+  },
+  {
+    "id": "sig-06",
+    "kind": "role_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": true
+  },
+  {
+    "id": "sig-07",
+    "kind": "company_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": true
+  },
+  {
+    "id": "sig-08",
+    "kind": "role_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": false
+  },
+  {
+    "id": "sig-09",
+    "kind": "website_view",
+    "read": false,
+    "date": "2025-04-02",
+    "account": {
+      "name": "Amazon",
+      "avatar": "amazon"
+    },
+    "pages": 2,
+    "seconds": 65
+  },
+  {
+    "id": "sig-10",
+    "kind": "website_view",
+    "read": false,
+    "date": "2025-04-02",
+    "account": {
+      "name": "Amazon",
+      "avatar": "amazon"
+    },
+    "pages": 2,
+    "seconds": 65
+  },
+  {
+    "id": "sig-11",
+    "kind": "role_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": true
+  },
+  {
+    "id": "sig-12",
+    "kind": "company_change",
+    "read": false,
+    "date": "2025-04-02",
+    "person": {
+      "name": "Robert Smith",
+      "avatar": "amazon"
+    },
+    "fromRole": "SDR",
+    "toRole": "Senior SDR",
+    "company": "WeRoad",
+    "inSequence": true
+  }
+]
