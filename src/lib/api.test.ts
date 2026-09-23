@@ -1,12 +1,11 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { NotFoundError } from '@/lib/api/client'
 import {
   completeSignal,
   deleteSignal,
   getSignals,
   resetSignals,
-} from '@/lib/api/signals'
+} from '@/lib/api'
 
 describe('signals service', () => {
   beforeEach(resetSignals)
@@ -48,12 +47,8 @@ describe('signals service', () => {
   })
 
   it('rejects a mutation whose target is gone, so a rollback has a cause', async () => {
-    await expect(completeSignal('does-not-exist')).rejects.toBeInstanceOf(
-      NotFoundError,
-    )
-    await expect(deleteSignal('does-not-exist')).rejects.toBeInstanceOf(
-      NotFoundError,
-    )
+    await expect(completeSignal('does-not-exist')).rejects.toThrow(/not found/)
+    await expect(deleteSignal('does-not-exist')).rejects.toThrow(/not found/)
   })
 
   it('does not leak mutations between tests', async () => {

@@ -1,6 +1,7 @@
 import PencilIcon from '@/assets/figma/edit-kpis.svg?react'
-import { type Kpi, KpiTile } from '@/components/dashboard/KpiTile'
+import { KpiTile } from '@/components/dashboard/KpiTile'
 import { Card, CardTitle } from '@/components/ui/Card'
+import type { Kpi } from '@/types'
 
 /**
  * The right rail's KPI panel: a 2×3 grid of 184×71 tiles with an 8px gutter.

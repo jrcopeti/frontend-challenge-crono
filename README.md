@@ -33,8 +33,10 @@ pnpm dev
 | Vitest + Testing Library     | Covers the one required interaction                            |
 | ESLint (flat) + Prettier     | typescript-eslint type-aware rules, react-hooks, jsx-a11y      |
 
-There is no backend: `src/lib/api` is a fake async service over seed JSON with an in-memory
-store, so mutations persist for the session.
+There is no backend. `src/mocks` holds the seed data as typed TypeScript modules, and
+`src/lib/api.ts` is a handful of functions that return it after a short delay so the UI has
+real loading states. The two signal mutations rebuild the list with `map`/`filter`, so the
+seed is never modified and the change persists for the session.
 
 ## Build order
 

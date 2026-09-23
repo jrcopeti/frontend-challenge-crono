@@ -1,17 +1,12 @@
-import { QueryClientProvider } from '@tanstack/react-query'
 import { renderHook, waitFor } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { createQueryClient } from '@/app/queryClient'
-import { countUnread, useSignals } from '@/features/signals/useSignals'
-import { completeSignal, resetSignals } from '@/lib/api/signals'
+import { Providers } from '@/app/Providers'
+import { countUnread, useSignals } from '@/features/useSignals'
+import { completeSignal, resetSignals } from '@/lib/api'
 import type { Signal } from '@/types'
 
-const wrapper = ({ children }: { children: React.ReactNode }) => (
-  <QueryClientProvider client={createQueryClient()}>
-    {children}
-  </QueryClientProvider>
-)
+const wrapper = Providers
 
 describe('useSignals', () => {
   beforeEach(resetSignals)

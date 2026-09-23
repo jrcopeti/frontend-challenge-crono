@@ -93,16 +93,16 @@ CI runs format:check, lint, typecheck, test and build on every push and PR.
 
 ```
 src/
-  app/            App, providers, query client
+  app/            App and providers
   components/
     layout/       AppShell, Sidebar and its parts
     dashboard/    Welcome, Replies, Today's tasks, Performance, Onboarding
     signals/      Signals card, rows, action menu
     ui/           Generic primitives (Card, Badge, Pill, Avatar, ProgressBar, ...)
-  features/signals/  Query hooks for the signals feature
-  lib/api/        Fake async service + in-memory store
-  mocks/          Seed JSON
-  types/          Domain types
+  features/       Query hooks (useDashboard, useSignals)
+  lib/api.ts      The fake async service
+  mocks/          Seed data, typed against `types/`
+  types/          Domain types — the single owner of every shape
   styles/         Tailwind entrypoint + design tokens
   assets/figma/   Exports from the design (see the asset rule above)
 ```

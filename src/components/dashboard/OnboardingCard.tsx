@@ -1,11 +1,5 @@
 import { Card, CardTitle } from '@/components/ui/Card'
-
-export type OnboardingStep = {
-  /** An imported PNG — these five glyphs are full-colour artwork, not line icons. */
-  icon: string
-  title: string
-  minutes: number
-}
+import type { OnboardingStep } from '@/types'
 
 /**
  * The rail's checklist. Five 40px rows separated by a 1px rule.

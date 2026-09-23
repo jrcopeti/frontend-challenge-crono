@@ -1,9 +1,5 @@
 import { Providers } from '@/app/Providers'
-import { type Kpi } from '@/components/dashboard/KpiTile'
-import {
-  OnboardingCard,
-  type OnboardingStep,
-} from '@/components/dashboard/OnboardingCard'
+import { OnboardingCard } from '@/components/dashboard/OnboardingCard'
 import { PerformanceCard } from '@/components/dashboard/PerformanceCard'
 import { RepliesCard } from '@/components/dashboard/RepliesCard'
 import { TodaysTasks } from '@/components/dashboard/TodaysTasks'
@@ -11,32 +7,9 @@ import { WelcomeCard } from '@/components/dashboard/WelcomeCard'
 import { AppShell } from '@/components/layout/AppShell'
 import { Card } from '@/components/ui/Card'
 import { Skeleton } from '@/components/ui/Skeleton'
-import { useDashboard } from '@/features/dashboard/useDashboard'
-import { countUnread, useSignals } from '@/features/signals/useSignals'
-import { BRAND_AVATARS, ONBOARDING_ICONS } from '@/lib/api/avatars'
-import { fillFraction } from '@/lib/api/dashboard'
-import type { Dashboard, KpiRecord, OnboardingRecord } from '@/types'
-
-/** "50K" for a currency figure; plain digits otherwise, as the export shows. */
-const thousands = (n: number) => (n >= 1000 ? `${n / 1000}K` : String(n))
-
-/** Seed records carry names and numbers; the view wants assets and formatters. */
-const toKpi = (k: KpiRecord): Kpi => ({
-  label: k.label,
-  value: k.value,
-  max: k.max,
-  tone: k.tone,
-  icon: k.icon,
-  hint: k.hint,
-  fill: fillFraction(k.fillPx),
-  ...(k.unit === 'currency' ? { format: thousands, prefix: '€' } : {}),
-})
-
-const toStep = (s: OnboardingRecord): OnboardingStep => ({
-  icon: ONBOARDING_ICONS[s.icon],
-  title: s.title,
-  minutes: s.minutes,
-})
+import { useDashboard } from '@/features/useDashboard'
+import { countUnread, useSignals } from '@/features/useSignals'
+import type { Dashboard } from '@/types'
 
 function DashboardColumns({ data }: { data: Dashboard }) {
   return (
@@ -46,10 +19,7 @@ function DashboardColumns({ data }: { data: Dashboard }) {
           <WelcomeCard name={data.userName} />
           <RepliesCard
             count={data.replies.count}
-            repliers={data.replies.repliers.map((r) => ({
-              name: r.name,
-              src: BRAND_AVATARS[r.brand],
-            }))}
+            repliers={data.replies.repliers}
           />
         </div>
         <TodaysTasks groups={data.taskGroups} />
@@ -57,8 +27,8 @@ function DashboardColumns({ data }: { data: Dashboard }) {
       </div>
 
       <div className="flex flex-col gap-2">
-        <PerformanceCard month={data.month} kpis={data.kpis.map(toKpi)} />
-        <OnboardingCard steps={data.onboarding.map(toStep)} />
+        <PerformanceCard month={data.month} kpis={data.kpis} />
+        <OnboardingCard steps={data.onboarding} />
       </div>
     </>
   )
