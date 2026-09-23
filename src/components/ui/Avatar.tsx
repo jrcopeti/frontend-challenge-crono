@@ -2,13 +2,7 @@ import { useState } from 'react'
 
 import { cn } from '@/lib/cn'
 
-/**
- * Avatar with an initials fallback.
- *
- * The design's avatars are bespoke illustrations that have not been exported
- * yet, so `src` is optional and the fallback keeps layout honest until the real
- * images land (see src/assets/figma/README.md).
- */
+/** Avatar with an initials fallback, used if the image fails to load. */
 export function Avatar({
   src,
   name,

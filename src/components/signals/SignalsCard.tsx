@@ -30,7 +30,6 @@ export function SignalsCard({
   signals: Signal[] | undefined
   unreadCount: number
   isPending: boolean
-  /** Phase 8 passes the dropdown; without it the row gets an inert button. */
   renderAction?: (signal: Signal) => React.ReactNode
 }) {
   return (

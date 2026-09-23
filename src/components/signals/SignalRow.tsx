@@ -26,7 +26,6 @@ export function SignalRow({
   action,
 }: {
   signal: Signal
-  /** The Action control. Inert here; phase 8 supplies the menu. */
   action?: React.ReactNode
 }) {
   const who = subject(signal)
