@@ -21,13 +21,15 @@ export function RepliesCard({
     <Card className="flex h-full flex-col p-4">
       <div className="flex items-center justify-between">
         <CardTitle>Replies</CardTitle>
-        <a
-          href="#inbox"
+        {/* A button, not a link: there is no router on this screen, and an
+            anchor to a fragment that does not exist is a broken affordance. */}
+        <button
+          type="button"
           className="inline-flex items-center gap-1 text-body leading-[18px] font-medium text-brand-strong"
         >
           Open inbox
           <ChevronRight size={16} strokeWidth={2} aria-hidden />
-        </a>
+        </button>
       </div>
 
       <div className="mt-1.5 flex h-20 items-center rounded-tile bg-brand-soft pr-6 pl-4">
