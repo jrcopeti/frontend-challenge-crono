@@ -57,16 +57,19 @@ width — a method validated against a string of known size, accurate to 0.3px.
 That is reliable for size but **cannot recover weight**; the weights and line
 heights below are the designer's own Figma values.
 
-| Use                                 | Size / weight / line-height |
-| ----------------------------------- | --------------------------- |
-| "Welcome Alex,"                     | 24 / 700 / 30               |
-| Task tile counts                    | 24 / 500 / 30               |
-| Replies count                       | 36 / 600                    |
-| Card titles                         | 14 / 600 / 22               |
-| Body, Welcome paragraph             | 14 / 400 / 20               |
-| "Open inbox" link                   | 14 / 500 / 18               |
-| Task tile labels                    | 14 / 500 / 16               |
-| Meta — dates, durations, KPI labels | 12                          |
+| Use                                 | Size / weight / line-height | Token                            |
+| ----------------------------------- | --------------------------- | -------------------------------- |
+| "Welcome Alex,"                     | 24 / 700 / 30               | `--text-display`                 |
+| Task tile counts                    | 24 / 500 / 30               | `--text-display`                 |
+| Replies count                       | 36 / 600                    | `--text-stat`                    |
+| Card titles                         | 14 / 600 / 22               | `--text-title`                   |
+| Body, Welcome paragraph             | 14 / 400 / 20               | `--text-body`                    |
+| "Open inbox" link                   | 14 / 500 / 18               | `--text-body` + `leading-[18px]` |
+| Task tile labels                    | 14 / 500 / 16               | `--text-body` + `leading-4`      |
+| Meta — dates, durations, KPI labels | 12                          | `--text-meta`                    |
+
+Weight is never a token — Tailwind's `font-*` utilities carry it, so the same
+`--text-body` serves 400, 500 and 600 uses.
 
 The scale is narrow on purpose: almost everything is 14px, and weight rather
 than size carries the hierarchy.
@@ -97,12 +100,13 @@ browser at 1440×750 and comparing against those measurements.
 
 ## Corner radii
 
-|                           | Value |
-| ------------------------- | ----- |
-| Cards                     | 16px  |
-| Task tiles, Replies panel | 12px  |
-| Trial card                | 8px   |
-| Action button, menu       | 12px  |
+|                           | Value | Token              |
+| ------------------------- | ----- | ------------------ |
+| Cards                     | 16px  | `--radius-card`    |
+| Task tiles, Replies panel | 12px  | `--radius-tile`    |
+| Action button, menu       | 12px  | `--radius-control` |
+| Trial card                | 8px   | `--radius-callout` |
+| "Upgrade plan", tooltip   | 6px   | `--radius-chip`    |
 
 These were wrong at first, and the reason is worth recording. Reading absolute
 pixel counts off the export **understates** a radius: an antialiased curve only
