@@ -54,9 +54,6 @@ export function SignalRow({
       </span>
 
       <span className="flex min-w-0 flex-col">
-        {/* 500, not the body default of 400: measured against the @3x export,
-            where this line carries 18% more ink at the same advance width. The
-            bold subject inside it stays 600. */}
         <span className="truncate text-body leading-[22px] font-medium text-ink">
           <SignalText signal={signal} />
         </span>
