@@ -40,7 +40,7 @@ export function SignalActionMenu({
           align="end"
           sideOffset={9}
           collisionPadding={8}
-          className="z-50 w-[216px] rounded-card border border-border bg-card p-[7px] shadow-[0_4px_16px_rgba(1,14,39,0.10)]"
+          className="z-50 w-[216px] rounded-card border border-border bg-card p-[7px] shadow-menu"
         >
           <Item icon={CompleteIcon} onSelect={onComplete} tone="brand">
             Complete

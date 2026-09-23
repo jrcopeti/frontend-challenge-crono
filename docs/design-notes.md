@@ -39,7 +39,11 @@ and a signal type label — so they are named by hue rather than by use site:
 | Purple | `#8846dc` / `#f2eaff`                               |
 | Pink   | `#e769cb` / `#fde5f8`                               |
 
-Cards are white with a **1px `#e6e9f2` border and no shadow**.
+Cards are white with a **1px `#e6e9f2` border and no shadow**. The Action menu
+is the only surface that casts one, and its tint is neutral grey rather than
+ink — every sampled pixel around it has r=g=b. Fitted to that falloff (about
+7px to the sides, 11px below, 2px above) it is `0 4px 16px rgb(0 0 0 / 0.09)`,
+carried by `--shadow-menu`.
 
 The wordmark carries its own teal, `#07c8c0` — a third teal, distinct from both
 brand tokens. The asset is used unaltered rather than tinted to a token, because

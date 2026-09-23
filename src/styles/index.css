@@ -104,6 +104,17 @@
   --radius-callout: 8px; /* the sidebar's trial card */
   --radius-chip: 6px; /* small surfaces: "Upgrade plan", the tooltip */
 
+  /* Shadow ---------------------------------------------------------------- */
+  /*
+   * The Action menu is the only surface in the export that casts one; every
+   * card is flat with a 1px border. Fitted to the falloff around it: the tint
+   * is neutral grey rather than ink (every sampled pixel has r=g=b), reaching
+   * about 7px to the sides, 11px below and barely 2px above, which places a
+   * 12px blur 5px down at roughly 10% — the offset is most of what keeps the
+   * top edge clean.
+   */
+  --shadow-menu: 0 5px 12px rgb(0 0 0 / 0.1);
+
   /* Measured layout constants --------------------------------------------- */
   --spacing-sidebar: 192px; /* 191px + 1px border */
   --spacing-rail: 408px; /* right-hand column */
