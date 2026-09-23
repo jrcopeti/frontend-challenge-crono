@@ -37,11 +37,13 @@ export function Tooltip({
           sideOffset={8}
           collisionPadding={8}
           className={cn(
-            'z-50 max-w-[246px] rounded-chip bg-tooltip px-3 py-[9px] text-center text-meta font-medium text-card',
+            'z-50 max-w-[246px] rounded-chip bg-tooltip px-3 py-2 text-center text-meta leading-4 font-medium text-card',
             className,
           )}
         >
           {content}
+          {/* The export draws an 8×3 caret on the tooltip's leading edge. */}
+          <RadixTooltip.Arrow width={8} height={3} className="fill-tooltip" />
         </RadixTooltip.Content>
       </RadixTooltip.Portal>
     </RadixTooltip.Root>
