@@ -57,17 +57,19 @@ width — a method validated against a string of known size, accurate to 0.3px.
 That is reliable for size but **cannot recover weight**; the weights and line
 heights below are the designer's own Figma values.
 
-| Use                                 | Size / weight / line-height | Token                            |
-| ----------------------------------- | --------------------------- | -------------------------------- |
-| "Welcome Alex,"                     | 24 / 700 / 30               | `--text-display`                 |
-| Task tile counts                    | 24 / 500 / 30               | `--text-display`                 |
-| Replies count                       | 36 / 600                    | `--text-stat`                    |
-| KPI figures                         | 16 / 500 / 24               | `--text-figure`                  |
-| Card titles                         | 14 / 600 / 22               | `--text-title`                   |
-| Body, Welcome paragraph             | 14 / 400 / 20               | `--text-body`                    |
-| "Open inbox" link                   | 14 / 500 / 18               | `--text-body` + `leading-[18px]` |
-| Task tile labels                    | 14 / 500 / 16               | `--text-body` + `leading-4`      |
-| Meta — dates, durations, KPI labels | 12                          | `--text-meta`                    |
+| Use                                       | Size / weight / line-height | Token                            |
+| ----------------------------------------- | --------------------------- | -------------------------------- |
+| "Welcome Alex,"                           | 24 / 700 / 30               | `--text-display`                 |
+| Task tile counts                          | 24 / 500 / 30               | `--text-display`                 |
+| Replies count                             | 36 / 600                    | `--text-stat`                    |
+| KPI figures                               | 16 / 500 / 24               | `--text-figure`                  |
+| Card titles                               | 14 / 600 / 22               | `--text-title`                   |
+| Body, Welcome paragraph                   | 14 / 400 / 20               | `--text-body`                    |
+| "Open inbox" link                         | 14 / 500 / 18               | `--text-body` + `leading-[18px]` |
+| Task tile labels                          | 14 / 500 / 16               | `--text-body` + `leading-4`      |
+| Meta — durations, KPI labels, type labels | 12                          | `--text-meta`                    |
+| Signal row date                           | 11 / 500 / 14               | `--text-micro`                   |
+| "In sequence" chip                        | 10, measured not given      | a local override on `Pill`       |
 
 Weight is never a token — Tailwind's `font-*` utilities carry it, so the same
 `--text-body` serves 400, 500 and 600 uses.
@@ -87,27 +89,28 @@ inside the border.** On a bordered card the two differ by 1px per side, which is
 why the KPI card is `px-[15px]` and the Onboarding card `pl-[15px] pr-[18px]`:
 16 and 19 would leave the grid 2px narrow and shift every tile right.
 
-|                   | Value                                         |
-| ----------------- | --------------------------------------------- |
-| Sidebar           | 192px (191 + 1px right border)                |
-| Page padding      | 16px                                          |
-| Main column       | x=208, width 800                              |
-| Right rail        | x=1016, width 408                             |
-| Column gap        | 8px                                           |
-| Main card rows    | y=16 h=142 · y=166 h=148 · y=322 h=412        |
-| Nav rows          | 40px tall, 48px pitch, 8px gap                |
-| KPI card          | 408×293, 2×3 grid, 8px gutters                |
-| KPI tiles         | 184×71, 8px tile padding, first row at y=49   |
-| KPI progress bars | 3px tall, 166px wide, at tile y+60            |
-| Onboarding card   | 408×412, list 373×332 at y=50                 |
-| Onboarding rows   | 40px tall, icons 40×40, 73px pitch            |
-| Signals card      | 800×412, 16px top padding, 12px gap           |
-| Signals list      | 800×332, 4px right padding, 16px gap          |
-| Signal rows       | 796×40, 16px side padding, 32px avatar        |
-| Action buttons    | 90×32, radius 34 (a pill), 16px side padding  |
-| Dropdown menu     | 216×96, 200×40 items at radius 8, 8px padding |
-| "In sequence"     | 70×16, radius 12 (a pill), 2/4 padding        |
-| Tooltip           | 246×64 body + a 8×3 caret, 16px line pitch    |
+|                   | Value                                           |
+| ----------------- | ----------------------------------------------- |
+| Sidebar           | 192px (191 + 1px right border)                  |
+| Page padding      | 16px                                            |
+| Main column       | x=208, width 800                                |
+| Right rail        | x=1016, width 408                               |
+| Column gap        | 8px                                             |
+| Main card rows    | y=16 h=142 · y=166 h=148 · y=322 h=412          |
+| Nav rows          | 40px tall, 48px pitch, 8px gap                  |
+| KPI card          | 408×293, 2×3 grid, 8px gutters                  |
+| KPI tiles         | 184×71, 8px tile padding, first row at y=49     |
+| KPI progress bars | 3px tall, 166px wide, at tile y+60              |
+| Onboarding card   | 408×412, list 373×332 at y=50                   |
+| Onboarding rows   | 40px tall, icons 40×40, 73px pitch              |
+| Signals card      | 800×412, header at y=16, first row at y=80      |
+| Signals list      | 332 tall, to the card's bottom, rule ends x=785 |
+| Signal rows       | 40px tall, 73px pitch, 32px avatar              |
+| Signals scrollbar | 8px wide at x=788–795, thumb `#e6e9f2`          |
+| Action buttons    | 90×32, radius 34 (a pill), 16px side padding    |
+| Dropdown menu     | 216×96, 200×40 items at radius 8, 8px padding   |
+| "In sequence"     | 70×16, radius 12 (a pill), 2/4 padding          |
+| Tooltip           | 246×64 body + a 8×3 caret, 16px line pitch      |
 
 ---
 
@@ -178,6 +181,20 @@ half strength. Rendering a crisp 1px line at the same position is correct.
   Manual count is `#c69812`; the Meetings KPI figure and icon are `#e2ad13`,
   though both are text. The task card contains no `#e2ad13` at all and the KPI
   figure is `#e2ad13` exactly, so neither can be inferred from the other.
+- **The Signals rule stops before the scrollbar**, ending at x=785 with a 2px
+  gap before the thumb at 788–795. It is easy to measure this wrong: the rule
+  and the thumb are both `#e6e9f2`, so a scan for non-white pixels across a
+  separator row reads as one unbroken run to the card's border. Check for the
+  white gap, or read a row below the thumb's travel.
+- **"2 pages" is teal but not bold.** Only the subject — the person or the
+  account — carries weight; the highlight is colour alone.
+- **The "In sequence" chip is 10px type**, not the 12px the labels beside it
+  use. The designer gave the chip's box but not its type; 12px draws its text
+  72px wide where the export measures 60.
+- **"2 pages" is `brand-strong`**, the same teal as the links, not the lighter
+  `brand` of the Action button beside it.
+- **The unread dot sits inside the avatar's box**, not beside it: avatar and
+  dot together measure exactly 32×32.
 - **Role change and Company change share a sentence.** Both read "Robert Smith
   changed role from SDR to Senior SDR at WeRoad"; only the coloured label
   differs. So the two kinds carry the same fields and `kind` selects the label,
