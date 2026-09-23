@@ -56,7 +56,8 @@ Each phase is its own PR.
 ## Known deviations
 
 Judgement calls where the export is internally inconsistent, or where matching it
-conflicts with another goal. All are deliberate.
+conflicts with another goal. All are deliberate, and each is explained in
+[`docs/design-notes.md`](docs/design-notes.md).
 
 | Item                                                                              | Decision                                                                  |
 | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -67,6 +68,10 @@ conflicts with another goal. All are deliberate.
 
 ## Design source
 
-`design/Dashboard.png` — two frames: the default state, and the state with the Action menu
-and the KPI tooltip open. Colours are sampled from this file rather than estimated; see
-`CLAUDE.md`.
+`design/Dashboard.png` — two frames: the default state, and the state with the Action
+menu and the KPI tooltip open.
+
+Nothing in this implementation is estimated by eye. Colours are sampled from the export,
+font sizes solved from measured ink widths, and corner radii verified by diffing rendered
+corner profiles against it. [`docs/design-notes.md`](docs/design-notes.md) records every
+value and the method behind it.

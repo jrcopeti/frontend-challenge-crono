@@ -29,3 +29,8 @@ coverage
 
 # Playwright MCP artefacts
 .playwright-mcp
+
+# Working notes and the design-measurement toolkit. Useful while building,
+# but not part of the deliverable — see the top of CLAUDE.md.
+PLAN.md
+.design-tools
