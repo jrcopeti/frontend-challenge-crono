@@ -104,3 +104,9 @@ Nothing in this implementation is estimated by eye. Colours are sampled from the
 font sizes solved from measured ink widths, and corner radii verified by diffing rendered
 corner profiles against it. [`docs/design-notes.md`](docs/design-notes.md) records every
 value and the method behind it.
+
+### Side by side
+
+The Figma export on top, the deployed app underneath, both 1440x750.
+
+![The Figma export above, the deployed app below, both at 1440x750](docs/screenshots/fidelity.png)
