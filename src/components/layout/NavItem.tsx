@@ -8,6 +8,9 @@ import { cn } from '@/lib/cn'
  * A 40px sidebar row. The active item is marked by a 3px brand bar flush to the
  * sidebar's left edge — it sits outside the row's padding, hence the negative
  * offset rather than a border on the row itself.
+ *
+ * `rounded-lg` rather than a token: the row's corner is only visible on hover,
+ * a state the export does not show, so there is nothing to sample.
  */
 export function NavItem({
   entry,

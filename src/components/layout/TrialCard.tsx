@@ -11,7 +11,7 @@ import swooshUrl from '@/assets/figma/trial-swoosh.svg'
  */
 export function TrialCard({ daysLeft }: { daysLeft: number }) {
   return (
-    <div className="relative h-16 overflow-hidden rounded-tile bg-accent-amber-soft px-2 pt-1.5">
+    <div className="relative h-16 overflow-hidden rounded-callout bg-accent-amber-soft px-2 pt-1.5">
       <img
         src={swooshUrl}
         alt=""
@@ -23,7 +23,7 @@ export function TrialCard({ daysLeft }: { daysLeft: number }) {
       </p>
       <button
         type="button"
-        className="relative mt-1.5 inline-flex h-6 items-center gap-1.5 rounded-md bg-accent-amber px-2 text-meta font-medium text-card"
+        className="relative mt-1.5 inline-flex h-6 items-center gap-1.5 rounded-chip bg-accent-amber px-2 text-meta font-medium text-card"
       >
         Upgrade plan
         <GiftIcon aria-hidden className="size-3" />

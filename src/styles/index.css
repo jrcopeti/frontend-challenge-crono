@@ -15,14 +15,21 @@
   --font-sans:
     'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
 
-  --text-display: 1.625rem; /* 26px — "Welcome Alex,", task tile counts */
-  --text-display--line-height: 1.25;
+  /*
+   * Sizes and line heights are the designer's own Figma values. They were
+   * first derived by measuring each string's ink width in the export and
+   * solving for the matching font size, which agreed to within 0.6px — but
+   * weight cannot be recovered that way, and two were wrong: the greeting is
+   * 700 rather than 600, and the task tile counts are 500 rather than 600.
+   */
   --text-stat: 2.25rem; /* 36px — the Replies count */
   --text-stat--line-height: 1.1;
-  --text-title: 1rem; /* 16px — card titles */
-  --text-title--line-height: 1.4;
-  --text-body: 0.875rem; /* 14px — descriptions, row text, nav */
-  --text-body--line-height: 1.45;
+  --text-display: 1.5rem; /* 24px/30 — "Welcome Alex,", task tile counts */
+  --text-display--line-height: 1.875rem;
+  --text-title: 0.875rem; /* 14px/22 — card titles, at weight 600 */
+  --text-title--line-height: 1.375rem;
+  --text-body: 0.875rem; /* 14px/20 — nearly everything */
+  --text-body--line-height: 1.25rem;
   --text-meta: 0.75rem; /* 12px — dates, durations, KPI labels */
   --text-meta--line-height: 1.35;
 
@@ -41,6 +48,7 @@
   --color-brand: #1ebab2; /* Action button, logo, onboarding accent */
   --color-brand-strong: #0a9b94; /* active nav, links, "Complete" */
   --color-brand-soft: #e9f8f8; /* Replies panel, "In sequence", menu hover */
+  --color-brand-chip: #ceeded; /* the icon disc inside the Replies panel */
 
   /*
    * Accent hues. Each is reused across three surfaces — a task tile, a KPI
@@ -73,9 +81,19 @@
   --color-onboarding-violet: #995aff;
 
   /* Radii ----------------------------------------------------------------- */
-  --radius-card: 12px;
-  --radius-tile: 8px;
-  --radius-control: 12px; /* Action button, menu */
+  /*
+   * Radii were first read off the export as absolute pixel counts, which gave
+   * 12/8 and was wrong — an antialiased curve reaches full strength later than
+   * its true tangent, so the reading understates it. They are now verified by
+   * rendering a candidate and comparing its corner profile against the export's
+   * row by row, which cancels that bias: the card, tile and trial profiles match
+   * exactly.
+   */
+  --radius-card: 16px;
+  --radius-tile: 12px;
+  --radius-control: 12px; /* Action button, signals menu */
+  --radius-callout: 8px; /* the sidebar's trial card */
+  --radius-chip: 6px; /* small surfaces: "Upgrade plan", the tooltip */
 
   /* Measured layout constants --------------------------------------------- */
   --spacing-sidebar: 192px; /* 191px + 1px border */
