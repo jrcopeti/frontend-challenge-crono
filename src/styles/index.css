@@ -91,7 +91,9 @@
    */
   --radius-card: 16px;
   --radius-tile: 12px;
-  --radius-control: 12px; /* Action button, menu */
+  --radius-control: 12px; /* Action button, signals menu */
+  --radius-callout: 8px; /* the sidebar's trial card */
+  --radius-chip: 6px; /* small surfaces: "Upgrade plan", the tooltip */
 
   /* Measured layout constants --------------------------------------------- */
   --spacing-sidebar: 192px; /* 191px + 1px border */
