@@ -171,6 +171,9 @@ artwork's own bounding box, no path data changed), and the trial-card swoosh
 embedded a 1668×2224 raster of which its pattern transform used a 138×188
 window — cropped, with the transform re-anchored, 304 KB → 19 KB.
 
-The nav icons ship with the inactive grey `#7A8395` baked in. They are inlined
-by `vite-plugin-svgr` and that grey swapped for `currentColor`, so the active
-row can render the same artwork in brand teal.
+Icon exports ship with their colour baked in. Every one is inlined by
+`vite-plugin-svgr` with that colour swapped for `currentColor`, so a Tailwind
+text-colour class drives it and the icon tracks its token. Without that the
+class is silently dead — the artwork still renders in the right colour, but only
+because the hardcoded hex happens to equal the token's current value, and it
+would drift the moment that token changed.
