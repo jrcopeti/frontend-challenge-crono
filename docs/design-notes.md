@@ -63,14 +63,31 @@ width — a method validated against a string of known size, accurate to 0.3px.
 That is reliable for size but **cannot recover weight**; the weights and line
 heights below are the designer's own Figma values.
 
+**Weight can be recovered from a @3x export**, and two of them were wrong. At 3x
+a glyph has nine samples per CSS pixel, so counting ink pixels inside a string's
+own bounding box separates weight from size: a heavier weight thickens the
+strokes and widens the advance slightly, a larger size grows the box. Rendering
+the candidate weights and comparing against the export settles it outright —
+
+| Run                  | Export             | Was                  | Now                      |
+| -------------------- | ------------------ | -------------------- | ------------------------ |
+| Signal sentence body | 336.3px, 11984 ink | 400 — 334.0, 10081   | **500 — 336.7, 11985**   |
+| Replies count "24"   | 41.33x27, 4104 ink | 600 — 41.67x27, 4790 | **500 — 41.33x27, 4098** |
+
+Both land within 0.2% of the export's ink. The bold subject inside a signal
+sentence stays 600 — it already matched to 0.4%. Every other text run was checked
+the same way and matches: the Welcome paragraph and heading, the Signals
+subtitle, the Onboarding titles and the card titles are all within 5%.
+
 | Use                                       | Size / weight / line-height | Token                            |
 | ----------------------------------------- | --------------------------- | -------------------------------- |
 | "Welcome Alex,"                           | 24 / 700 / 30               | `--text-display`                 |
 | Task tile counts                          | 24 / 500 / 30               | `--text-display`                 |
-| Replies count                             | 36 / 600                    | `--text-stat`                    |
+| Replies count                             | 36 / 500                    | `--text-stat`                    |
 | KPI figures                               | 16 / 500 / 24               | `--text-figure`                  |
 | Card titles                               | 14 / 600 / 22               | `--text-title`                   |
 | Body, Welcome paragraph                   | 14 / 400 / 20               | `--text-body`                    |
+| Signal sentence                           | 14 / 500 / 22               | `--text-body` + `font-medium`    |
 | "Open inbox" link                         | 14 / 500 / 18               | `--text-body` + `leading-[18px]` |
 | Task tile labels                          | 14 / 500 / 16               | `--text-body` + `leading-4`      |
 | Meta — durations, KPI labels, type labels | 12                          | `--text-meta`                    |

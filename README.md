@@ -3,7 +3,12 @@
 A pixel-faithful rebuild of the Crono dashboard screen from the provided Figma design, in
 React + TypeScript.
 
-> Frontend engineer assessment. The live deployment link lands in PR 10.
+**Live:** <https://frontend-challenge-crono.vercel.app> — Vercel, built from `main`, with
+a preview deployment on every PR.
+
+> Frontend engineer assessment.
+
+![The dashboard at 1440x750, the width the design is drawn at](docs/screenshots/dashboard.png)
 
 ## Quick start
 
@@ -37,6 +42,28 @@ There is no backend. `src/mocks` holds the seed data as typed TypeScript modules
 `src/lib/api.ts` is a handful of functions that return it after a short delay so the UI has
 real loading states. The two signal mutations rebuild the list with `map`/`filter`, so the
 seed is never modified and the change persists for the session.
+
+## The interaction
+
+The brief asks for one. **Action** on a signal row opens a menu with **Complete** and
+**Delete**, and either one decreases the unread counter beside the Signals title.
+
+![The Action menu open on the first signal row](docs/screenshots/action-menu.png)
+
+- **Complete** marks the signal read in place: the unread dot clears, the row stays.
+- **Delete** removes the row.
+- The counter is **derived, never decremented** — `signals.filter((s) => !s.read).length`.
+  That makes "complete an already-read signal" and "delete a read signal" correct without
+  either case needing its own branch.
+- The sidebar's Inbox badge is a separate, static replies count, deliberately not wired to
+  this one.
+
+Both run as optimistic mutations: the list is rewritten in the query cache before the
+simulated request resolves, `onError` puts the previous list back, and `onSettled`
+refetches so the cache agrees with the service either way.
+
+The menu is Radix `DropdownMenu`, which supplies Escape and outside-click to close, arrow
+key navigation, one menu open at a time, and focus returning to the button afterwards.
 
 ## Build order
 
@@ -77,3 +104,9 @@ Nothing in this implementation is estimated by eye. Colours are sampled from the
 font sizes solved from measured ink widths, and corner radii verified by diffing rendered
 corner profiles against it. [`docs/design-notes.md`](docs/design-notes.md) records every
 value and the method behind it.
+
+### Side by side
+
+The Figma export on top, the deployed app underneath, both 1440x750.
+
+![The Figma export above, the deployed app below, both at 1440x750](docs/screenshots/fidelity.png)

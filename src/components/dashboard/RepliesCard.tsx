@@ -35,7 +35,7 @@ export function RepliesCard({
         <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-chip">
           <MailIcon aria-hidden className="size-6 text-brand-strong" />
         </span>
-        <span className="ml-[18px] text-stat font-semibold text-ink-soft">
+        <span className="ml-[18px] text-stat font-medium text-ink-soft">
           {count}
         </span>
         <AvatarStack people={repliers} size={32} className="ml-auto" />

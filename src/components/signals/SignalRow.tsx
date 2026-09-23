@@ -54,7 +54,7 @@ export function SignalRow({
       </span>
 
       <span className="flex min-w-0 flex-col">
-        <span className="truncate text-body leading-[22px] text-ink">
+        <span className="truncate text-body leading-[22px] font-medium text-ink">
           <SignalText signal={signal} />
         </span>
         <span className="flex items-center gap-1">
